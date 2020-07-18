@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 import { ProductService } from './product.servise';
 
-
-
 @Component({
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
-  pageTitle: string = 'Product List';
-  products: IProduct[] = [];
+  public pageTitle = 'Product List';
+  public products: IProduct[];
 
-  constructor(private _productServise: ProductService) { }
+  constructor(private productServise: ProductService) { }
 
-  ngOnInit(): void {
-    this._productServise.getProducts()
-            .subscribe(products => {
-              this.products = products
-            });
+  public buyProd(prod: IProduct): void {
+    this.productServise.setProdToCart(prod);
   }
+
+  public ngOnInit(): void {
+    this.productServise.getProducts().subscribe(data => this.products = data);
+   }
 
 }

@@ -18,7 +18,7 @@
             <td>{{product.name}}</td>
             <td>{{product.label }}</td>
             <td>{{product.price}}</td>
-            <td><button class="btn btn-info">
+            <td><button class="btn btn-info" (click)="buyProd(product)"  [value]="product.name">
               Buy
             </button></td>
           </tr>
